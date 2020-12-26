@@ -73,7 +73,7 @@ namespace GithHubMVC.Controllers
 
         [HttpGet]
         public async Task<ActionResult> Search(string repositoryName) 
-         {
+        {
             string url = "https://api.github.com/search/repositories?q=";//YOUR_SEARCH_KEYWORD
             if (repositoryName == null || repositoryName == "") repositoryName = "YOUR_SEARCH_KEYWORD";//Default search value
 
@@ -96,8 +96,14 @@ namespace GithHubMVC.Controllers
             return View("Index", tempItems);
 
         }
-                 
-         #endregion
+
+        public ActionResult GetContact()
+        {
+            return View("Contact");
+        }
+
+
+        #endregion
 
     }
 }
