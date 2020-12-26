@@ -1,0 +1,37 @@
+﻿@model IEnumerable<GithHubMVC.Models.Item>
+
+@{
+    ViewBag.Title = "Main";
+}
+
+    <@Page Language="C#" EnableSessionState="True">
+
+        <h2>Github Repository Search</h2>
+
+        @using (Html.BeginForm("search", "Home", new { repoName = "gitbook-plugin-search-languages" }, FormMethod.Get, new { Id = "searchForm" }))
+        {
+            @Html.TextBox("repositoryName");
+            <input type="submit" value="Search">
+        }
+        <p></p>
+
+        <div class="row-fluid">
+            <div class="span2">
+                <div>
+                    @foreach (var repo in Model)
+                    {
+                        <strong>@repo.name</strong>
+                        <div class="photo-div">
+                            <img alt="@repo.name" src="@Url.Content(@repo.owner.avatar_url)" class="img-circle" onclick="display(this);" />
+                        </div>
+                        <br />
+
+                        <p><a href="http://localhost:52125/Home/SessionSave?RepositoryName=@repo.name&Path=@repo.owner.avatar_url" class="btn btn-primary btn-lg">Bookmark</a></p>
+
+                    }
+                </div>
+
+            </div>
+        </div>
+
+

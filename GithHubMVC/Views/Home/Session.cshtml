@@ -1,0 +1,33 @@
+﻿@model IEnumerable<GithHubMVC.Models.ItemModel>
+
+@{
+    ViewBag.Title = "Bookmarks";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RepositoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Path)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RepositoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Path)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<a href="http://localhost:52125/Home/Back" class="btn btn-primary btn-lg">Back</a>

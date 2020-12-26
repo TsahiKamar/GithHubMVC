@@ -1,0 +1,99 @@
+﻿@model IEnumerable<GithHubMVC.Models.Item>
+
+@{
+    ViewBag.Title = "";
+}
+
+    <@Page Language="C#" EnableSessionState="True">
+
+        <h2>Github Search</h2>
+
+        @*@{
+            var bookmarkAddInd = ViewData["BookmarkAddInd"];
+        }*@
+
+ 
+        @using (Html.BeginForm("search", "Home", null, FormMethod.Get, new { Id = "searchForm" }))
+        {
+
+
+            @Html.Label("Repository Name");
+            <br />
+            @Html.TextBox("repositoryName", null, new { @class = "form-control", autofocus = "autofocus",placeholder="Type repository name .." });<!--autofocus = "autofocus", onblur = "SetFocus();", onKeyPress = "SetFocus()"-->
+            <br>
+            <input type="submit" id="submit" class="btn btn-info" value="Search">
+
+        }
+        <hr style="width:50%;text-align:left;margin-left:0">
+        <p></p>
+
+
+        <div class="row-fluid">
+            <div class="span2">
+                <div>
+                    @foreach (var repo in Model)
+                    {
+
+                        <strong>@repo.name</strong>
+                        <div class="photo-div">
+                            <img alt="@repo.name" src="@Url.Content(@repo.owner.avatar_url)" class="img-circle" />
+                        </div>
+                        <br />
+                        <!--btn btn-primary btn-lg-->
+                        <a href="http://localhost:52125/Home/SessionSave?RepositoryName=@repo.name&Path=@repo.owner.avatar_url" class="button">Bookmark</a>
+
+                        <hr class="rounded">
+                    }
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <style>
+            .circle-img {
+                width: 250px;
+                height: 250px;
+                overflow: hidden;
+            }
+
+                .circle-img img {
+                    height: 100%;
+                    transform: translateX(-50%);
+                    margin-left: 50%;
+                }
+
+            .button {
+                padding: 15px 25px;
+                font-size: 14px;
+                text-align: center;
+                cursor: pointer;
+                outline: none;
+                color: #fff;
+                background-color: #4CAF50;
+                border: none;
+                border-radius: 15px;
+                box-shadow: 0 9px #999;
+            }
+
+                .button:hover {
+                    background-color: #3e8e41
+                }
+
+                .button:active {
+                    background-color: #3e8e41;
+                    box-shadow: 0 5px #666;
+                    transform: translateY(4px);
+                }
+        </style>
+
+
+
+        <script>
+
+            function SetFocus() {
+                document.getElementById("submit").focus();
+            }
+
+        </script>
