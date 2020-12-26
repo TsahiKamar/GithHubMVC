@@ -8,11 +8,7 @@
 
         <h2>Github Search</h2>
 
-        @*@{
-            var bookmarkAddInd = ViewData["BookmarkAddInd"];
-        }*@
 
- 
         @using (Html.BeginForm("search", "Home", null, FormMethod.Get, new { Id = "searchForm" }))
         {
 
@@ -39,7 +35,6 @@
                             <img alt="@repo.name" src="@Url.Content(@repo.owner.avatar_url)" class="img-circle" />
                         </div>
                         <br />
-                        <!--btn btn-primary btn-lg-->
                         <a href="http://localhost:52125/Home/SessionSave?RepositoryName=@repo.name&Path=@repo.owner.avatar_url" class="button">Bookmark</a>
 
                         <hr class="rounded">
